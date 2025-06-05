@@ -1,8 +1,8 @@
 {
-  "name": "website",
-  "description": "Build a personal website, blog, or portfolio with Astro.",
+  "name": "homepage",
+  "description": "Rasmus Kirvesmäki's website",
   "cloudflare": {
-    "label": "Astro Framework Starter",
+    "label": "",
     "products": [
       "Workers"
     ],

@@ -5,7 +5,7 @@ import Social from './Social.astro';
 ---
 
 <header>
-	<nav>
+	<nav class="container">
 		<div>
 			<img width={40} height={40} style="border-radius: 30%" src="/IconSmall.png" alt="" />
 			<h2><a href="/">{SITE_TITLE}</a></h2>
@@ -19,9 +19,18 @@ import Social from './Social.astro';
 <style>
 	header {
 		margin: 0;
-		padding: 0 1em;
+		padding: 0;
 		/* background: ;
 		box-shadow: 0 2px 8px rgba(var(--black), 5%); */
+	}
+	nav.container {
+		width: 720px;
+		max-width: calc(100% - 2em);
+		margin: 0 auto;
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		box-sizing: border-box;
 	}
 	h2 {
 		margin: 0;
@@ -31,11 +40,6 @@ import Social from './Social.astro';
 	h2 a,
 	h2 a.active {
 		text-decoration: none;
-	}
-	nav {
-		display: flex;
-		align-items: center;
-		justify-content: space-between;
 	}
 	nav > div:first-child {
 		display: flex;
@@ -51,5 +55,12 @@ import Social from './Social.astro';
 	nav a.active {
 		text-decoration: none;
 		border-bottom-color: var(--accent);
+	}
+	@media (max-width: 720px) {
+		nav.container {
+			width: 100%;
+			max-width: 100%;
+			padding: 0 0.5em;
+		}
 	}
 </style>

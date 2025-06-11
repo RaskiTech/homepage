@@ -1,7 +1,7 @@
 ---
-title: Developing a faster matrix multiplication implementation on the CPU
-description: Recently I took a course in parallel computing, where the focus was on using all the available resources we have on our computers. The course was tough but really interesting, so I thought I could share some of the concepts learned there
-pubDate: Jun 10 2026
+title: Developing a fast matrix multiplication implementation on the CPU
+description: Recently I took a course in parallel computing, where the focus was on using all the available resources we have on our computers. The course was tough but really interesting, so I thought I could share some of the concepts learned there.
+pubDate: Jun 10 2025
 ---
 
 Recently I took a course in parallel computing, where the focus was on using all the available resources we have on our computers. The course was tough but really interesting, so I thought it would be interesting to share some of the concepts learned there. The course, called Programming Parallel Computers, can be found [online](https://ppc.cs.aalto.fi/) and there is an open version of it as well.
@@ -10,16 +10,16 @@ It’s helpful to have an example problem to go along with, so in this post I’
 
 ### Baseline
 ```
-    for (int y = 0; y < ny; y++)
+for (int y = 0; y < ny; y++)
+{
+    for (int x = y; x < ny; x++)
     {
-        for (int x = y; x < ny; x++)
-        {
-            float sum = 0;
-            for (int k = 0; k < nx; k++)
-                sum += mat[k + nx*y] * mat2[x + nx*k]
-            result[x + y*ny] = sum;
-        }
+        float sum = 0;
+        for (int k = 0; k < nx; k++)
+            sum += mat[k + nx*y] * mat2[x + nx*k]
+        result[x + y*ny] = sum;
     }
+}
 ```
 
 
@@ -43,7 +43,7 @@ for (int y = 0; y < ny; y++)
 }
 ```
 
-Here of course we need to modify our preprocessing so that it packs the values into vectors. I find it quite helpful to always try to visualize my problems, this is what I’ve done here. In the 3D diagram below, the top and right face represent our input matrices, while the front face is the result matrix. To calculate the orange area, we need to multiply the blue areas together and add them up. For this reason, it makes sense to vectorize these and that is exactly what you can see in the code above.
+Here of course we need to modify our preprocessing so that it packs the values into vectors. I find it quite helpful to always try to visualize my problems, this is what I’ve done here. In the 3D diagram below, the top and right face represent our input matrices, while the front face is the result matrix. To calculate the orange area, we need to multiply the blue areas together and add them up. For this reason, it makes sense to vectorize these, and that is exactly what you can see in the code above.
 
   ![](../images/MatMul1.png)
   
@@ -76,7 +76,7 @@ for (int i = 0; i < 16; i++)
 for (int k = 0; k < WIDTH; k++)
 {
     const float16 val1 = mat[k + x0*WIDTH];
-    const float16 val2 = mat[k + y0*WIDTH];
+    const float16 val2 = mat2[k + y0*WIDTH];
 
     for (int i = 0; i < 16; i++) // The compiler will unroll this
         sums[i] += val1 * val2[i];

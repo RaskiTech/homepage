@@ -26,18 +26,23 @@ const posts = (await getCollection('blog')).sort(
 <style>
     .blog-card {
         display: block;
-        background: #fff;
-        border-radius: 1.5rem;
-        box-shadow: 0 2px 12px rgba(0,0,0,0.07);
+        /* Remove background and border radius */
+        background: none;
+        border-radius: 0;
+        /* Remove box-shadow */
+        box-shadow: none;
         padding: 1.5rem 2rem;
         text-decoration: none;
         color: inherit;
-        transition: box-shadow 0.2s, transform 0.2s;
+        transition: background 0.4s;
         cursor: pointer;
     }
     .blog-card:hover {
-        box-shadow: 0 4px 24px rgba(0,0,0,0.13);
-        transform: translateY(-2px) scale(1.02);
+        /* Add a subtle dark background on hover */
+        background: rgba(0, 0, 0, 0.07);
+        /* Remove box-shadow and transform */
+        box-shadow: none;
+        transform: none;
     }
     .blog-card .title {
         font-size: 1.5rem;

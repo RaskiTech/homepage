@@ -7,7 +7,7 @@ import FormattedDate from '../components/FormattedDate.astro';
 
 type Props = CollectionEntry<'blog'>['data'];
 
-const { title, description, updatedDate, heroImage } = Astro.props;
+const { title, description, updatedDate } = Astro.props;
 ---
 
 <html lang="en">
@@ -37,12 +37,13 @@ const { title, description, updatedDate, heroImage } = Astro.props;
 			}
 			.title {
 				margin-bottom: 1em;
-				padding: 1em 0;
-				text-align: center;
+				padding: 0.01em 0;
+				text-align: left;
 				line-height: 1;
 			}
 			.title h1 {
 				margin: 0 0 0.5em 0;
+				font-size: 40px;
 			}
 			.date {
 				margin-bottom: 0.5em;
@@ -51,6 +52,27 @@ const { title, description, updatedDate, heroImage } = Astro.props;
 			.last-updated-on {
 				font-style: italic;
 			}
+			.blog-end-btn-container {
+				display: flex;
+				justify-content: left;
+				padding: 0;
+			}
+			.blog-end-btn {
+				display: inline-block;
+				padding: 0.7em 1.5em;
+				font-size: 1.1rem;
+				font-weight: 500;
+				color: inherit;
+				background: none;
+				border: none;
+				border-radius: 5px;
+				cursor: pointer;
+				text-decoration: none;
+				transition: background 0.5s;
+			}
+			.blog-end-btn:hover {
+				background: rgba(30, 30, 30, 0.08);
+			}
 		</style>
 	</head>
 
@@ -58,9 +80,6 @@ const { title, description, updatedDate, heroImage } = Astro.props;
 		<Header />
 		<main>
 			<article>
-				<div class="hero-image">
-					{heroImage && <img width={1020} height={510} src={heroImage} alt="" />}
-				</div>
 				<div class="prose">
 					<div class="title">
 						<div class="date">
@@ -73,9 +92,12 @@ const { title, description, updatedDate, heroImage } = Astro.props;
 							}
 						</div>
 						<h1>{title}</h1>
-						<hr />
+						<hr class="divider"/>
 					</div>
 					<slot />
+					<div class="blog-end-btn-container">
+						<a href="/" class="blog-end-btn">← Back</a>
+					</div>
 				</div>
 			</article>
 		</main>

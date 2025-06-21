@@ -6,14 +6,18 @@ import BlogList from '../components/BlogList.astro';
 import { SITE_TITLE, SITE_DESCRIPTION } from '../consts';
 ---
 
+<!-- 
+	TODO: Footer to bottom, website doesn't work in dark mode, change discord preview image
+-->
+
 <!doctype html>
 <html lang="en">
 	<head>
 		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
 	</head>
-	<body>
+	<body style="min-height:100vh;display:flex;flex-direction:column;">
 		<Header />
-		<main>
+		<main style="flex:1 0 auto;">
 			<div>
 				<p>
 					This is Rasmus Kirvesmäki's website. I am a software developer currently studying at Aalto University. Here I write about stuff that I've worked with 

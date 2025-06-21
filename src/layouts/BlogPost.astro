@@ -63,15 +63,15 @@ const { title, description, updatedDate } = Astro.props;
 				font-size: 1.1rem;
 				font-weight: 500;
 				color: inherit;
-				background: none;
+				background: rgba(var(--gray), 0%); /* subtle background */
 				border: none;
 				border-radius: 5px;
 				cursor: pointer;
 				text-decoration: none;
-				transition: background 0.5s;
+				transition: background 0.4s;
 			}
 			.blog-end-btn:hover {
-				background: rgba(30, 30, 30, 0.08);
+				background: rgba(var(--gray), 10%); /* darker on hover */
 			}
 		</style>
 	</head>

@@ -16,6 +16,7 @@
   --box-shadow:
     0 2px 6px rgba(var(--gray), 25%), 0 8px 24px rgba(var(--gray), 33%),
     0 16px 32px rgba(var(--gray), 33%);
+  --codeBackground: #33373d; /*#25292E */ 
 }
 @font-face {
   font-family: "Atkinson";
@@ -46,7 +47,13 @@
   font-family: swap;
 }
 
+html, body {
+  height: 100%;
+}
 body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   font-family: sans-serif;
   font-size: 17px;
   margin: 0;
@@ -60,10 +67,11 @@ body {
   line-height: 1.7;
 }
 main {
+  flex: 1 0 auto;
   width: 720px;
-  max-width: calc(100% - 2em);
+  max-width: calc(100% - 1em);
   margin: auto;
-  padding: 2em 1em;
+  padding: 2em 0.5em;
 }
 h1,
 h2,
@@ -95,10 +103,10 @@ b {
   font-weight: 700;
 }
 a {
-  color: var(--accent);
+  color: var(--accent-dark);
 }
 a:hover {
-  color: var(--accent);
+  color: var(--accent-dark);
 }
 p {
   margin-bottom: 1em;
@@ -121,17 +129,18 @@ img {
   height: auto;
   border-radius: 8px;
 }
-code {
-  padding: 2px 5px;
-  background-color: rgb(var(--gray-light));
-  border-radius: 2px;
-}
 pre {
   padding: 1.5em;
   border-radius: 8px;
 }
 pre > code {
   all: unset;
+}
+code {
+  padding: 1px 3px;
+  background-color: var(--codeBackground);
+  border-radius: 4px;
+  color: var(--background-col);
 }
 blockquote {
   border-left: 4px solid var(--accent);
@@ -148,7 +157,7 @@ hr {
     font-size: 18px;
   }
   main {
-    padding: 1em;
+    padding: 0.5em;
   }
 }
 
@@ -178,4 +187,7 @@ hr {
   margin-left: auto;
   margin-right: auto;
   opacity: 0.18
+}
+footer {
+  margin-top: auto;
 }

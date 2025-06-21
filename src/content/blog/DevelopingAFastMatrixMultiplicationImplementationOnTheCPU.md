@@ -9,7 +9,7 @@ Recently I took a course in parallel computing, where the focus was on using all
 It’s helpful to have an example problem to go along with, so in this post I’ll be discussing matrix multiplication on the cpu. Assuming our matrices are squares of sidelength n, we need to do n<sup>3</sup> operations on them. More importantly, there are many operations which we can do simultaneously, which makes this a very good example problem - maybe that’s why there are plenty of articles on matrix multiplication already. However, few of these go as deep as I’d like, so in this post I’ll try to continue where others have stopped. If you haven't already, please read through _Siboehm_'s rather famous post on the topic [here](https://siboehm.com/articles/22/Fast-MMM-on-CPU). I will assume that as prerequisite knowledge.
 
 ### Baseline
-```
+```c++
 for (int y = 0; y < ny; y++)
 {
     for (int x = y; x < ny; x++)
@@ -30,7 +30,7 @@ Here is the baseline implementation. I’ll start measuring benchmarks when they
 
 Let’s first tackle vectors. Modern computers have vector registers which can do multiple independent operations in parallel. At the time of writing this the widest we have in any computer is [AVX-512](https://en.wikipedia.org/wiki/AVX-512) registers, which are 64 bytes wide. Since one float is 4 bytes, we can fit 16 floats into one register. This allows us to do 16 independent operations on a single instruction. Needless to say, this should speed up our solution by approximately 16x. We can access vector instructions by defining them in gcc like so: `typedef float float16_t __attribute__((vector_size(64)));`. I'm running these on a machine that supports AVX-512. If you don't have that available, you can also use AVX2. These vectors will allow us to do the following:
 
-```
+```c++
 for (int y = 0; y < ny; y++)
 {
     for (int x = y; x < ny; x++)
@@ -68,7 +68,7 @@ The term broadcast refers to the assembly instruction _vbroadcastss_, which take
 
 After we have loaded the purple vectors from memory, we go through every one of them sequentially. In the image this is done for the vertical one. For each element in the vector, we broadcast it to a vector full of that value (shown in aqua) and multiply it with the other vector to get the result (orange). We sum the results of every input matrix column as we did previously. This technique gives us a comfortable 6x speedup over the last version, putting us at 1.6s for the testcase. The inner-most loop of code for this in C++ could look something like this:
 
-```
+```c++
 float16 sums[16];
 for (int i = 0; i < 16; i++)
     sums[i] = VEC_0;
@@ -86,7 +86,7 @@ for (int i = 0; i < 16; i++)
     sumsMem[i] = sums[i];
 ```
 
-We make a stack array `vec sums[16]` of the vectors to force the compiler to store them in registers during the loop, and only put them into memory after we have summed everything.
+We make a stack array `vec sums[16];` of the vectors to force the compiler to store them in registers during the loop, and only put them into memory after we have summed everything.
 
 ### Segmentation
 

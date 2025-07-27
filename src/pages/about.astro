@@ -6,16 +6,23 @@ import eagleImg from '../content/images/Eagle-engine.png';
 import findafunctionImg from '../content/images/Find-a-Function.png';
 import seamlessLofiImg from '../content/images/AI-Seamless-Lofi.png';
 import circuitImg from '../content/images/Circuit-simulator.png';
+import portraitImg from '../content/images/portrait.jpg';
 ---
 
 <Layout
 	title="About"
 	description="About me"
+	pubDate={new Date()}
 >
-	<p>
-		I'm Rasmus Kirvesmäki, and I study Computer Science at Aalto University.
-		You can contact me at raskitech [at] gmail.com
-	</p>
+	<div class="intro-section">
+		<div class="intro-text">
+			<p>
+				I'm Rasmus Kirvesmäki, and I study Computer Science at Aalto University.
+				You can contact me at raskitech [at] gmail.com
+			</p>
+		</div>
+		<img src={portraitImg.src} class="portrait-img" />
+	</div>
 
 	<h4>Projects</h4>
 	<a href="https://github.com/RaskiTech/Eagle" class="project-card" target="_blank" rel="noopener">
@@ -73,6 +80,40 @@ import circuitImg from '../content/images/Circuit-simulator.png';
 </Layout>
 
 <style>
+	.intro-section {
+		display: flex;
+		align-items: flex-start;
+		gap: 2rem;
+		margin-bottom: 2rem;
+	}
+	
+	.intro-text {
+		flex: 1;
+	}
+	
+	.portrait-img {
+		width: 160px;
+		height: 160px;
+		border-radius: 6px;
+		object-fit: cover;
+		flex-shrink: 0;
+		box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+	}
+	
+	@media (max-width: 600px) {
+		.intro-section {
+			flex-direction: column;
+			align-items: center;
+			text-align: center;
+			gap: 1rem;
+		}
+		
+		.portrait-img {
+			width: 144px;
+			height: 144px;
+		}
+	}
+	
 	.boldHeader {
 		margin: 1.2em 0 0.5em 0;
 		font-size: 1.05rem;

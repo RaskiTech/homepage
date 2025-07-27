@@ -2,7 +2,7 @@
 import { getCollection } from 'astro:content';
 import FormattedDate from '../components/FormattedDate.astro';
 
-const posts = (await getCollection('blog')).sort(
+const posts = (await getCollection('blog')).filter(a => a.data.public !== false).sort(
 	(a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
 );
 ---
@@ -35,6 +35,7 @@ const posts = (await getCollection('blog')).sort(
         text-decoration: none;
         color: inherit;
         transition: background 0.4s;
+        background: rgba(0, 0, 0, 0.03);
         cursor: pointer;
     }
     .blog-card:hover {
@@ -54,12 +55,6 @@ const posts = (await getCollection('blog')).sort(
         color: #444;
         margin: 0 0 1rem 0;
         line-height: 1.5;
-        max-height: 6em;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        display: -webkit-box;
-        -webkit-line-clamp: 4;
-        -webkit-box-orient: vertical;
     }
     .blog-card .date {
         font-size: 0.85rem;

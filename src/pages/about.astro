@@ -6,6 +6,7 @@ import eagleImg from '../content/images/Eagle-engine.png';
 import findafunctionImg from '../content/images/Find-a-Function.png';
 import seamlessLofiImg from '../content/images/AI-Seamless-Lofi.png';
 import circuitImg from '../content/images/Circuit-simulator.png';
+import cruiseChatImg from '../content/images/cruise-chat.png';
 import portraitImg from '../content/images/portrait.jpg';
 ---
 
@@ -25,6 +26,19 @@ import portraitImg from '../content/images/portrait.jpg';
 	</div>
 
 	<h4>Projects</h4>
+	<a href="https://play.google.com/store/apps/details?id=com.raskitech.cruisechat" class="project-card" target="_blank" rel="noopener">
+		<div class="project-card-content">
+			<img src={cruiseChatImg.src} alt="Cruise Chat logo" class="project-card-img" />
+			<div>
+				<h5 class="boldHeader">Cruise Chat</h5>
+				<p>
+					CruiseChat is a simple messaging app that works with peer-to-peer
+					connections and therefore doesn't require internet.
+				</p>
+			</div>
+		</div>
+	</a>
+	{/*
 	<a href="https://github.com/RaskiTech/Eagle" class="project-card" target="_blank" rel="noopener">
 		<div class="project-card-content">
 			<img src={eagleImg.src} alt="Eagle Engine logo" class="project-card-img" />
@@ -38,6 +52,7 @@ import portraitImg from '../content/images/portrait.jpg';
 			</div>
 		</div>
 	</a>
+	*/}
 	<a href="https://raskitech.github.io/Find-a-Function/" class="project-card" target="_blank" rel="noopener">
 		<div class="project-card-content">
 			<img src={findafunctionImg.src} alt="Find-A-Function logo" class="project-card-img" />
@@ -148,8 +163,8 @@ import portraitImg from '../content/images/portrait.jpg';
 		object-fit: contain;
 		flex-shrink: 0;
 		border-radius: 6px;
-		background: #fff;
-		box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+		/* background: #fff; */
+		/* box-shadow: 0 1px 4px rgba(0,0,0,0.06); */
 	}
 	h4 {
 		margin-bottom: 1em;

@@ -10,7 +10,7 @@ const blog = defineCollection({
     description: z.string(),
     // Transform string to Date object
     pubDate: z.coerce.date(),
-    public: z.boolean().optional(),
+    public: z.string().optional(), // String of "false" or "true"
     updatedDate: z.coerce.date().optional(),
     heroImage: z.string().optional(),
   }),
